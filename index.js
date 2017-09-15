@@ -10,14 +10,14 @@ const
 let nightmare = Nightmare()
 
 var currentdate = new Date();
-var datetime = "Last Ran: " + currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/"
+var datetime = "Last Ran: " + (currentdate.getMonth()+1) + "/"
+                + currentdate.getDate() + "/"
                 + currentdate.getFullYear() + " @ "
                 + currentdate.getHours() + ":"
                 + currentdate.getMinutes() + ":"
                 + currentdate.getSeconds();
 
-// var repeat = function() {
+var repeat = function() {
   nightmare
   .goto('https://profiles.generalassemb.ly/profiles')
   .wait('body > nav > div.nav__login-ctas.js-signed-out > a.nav__login-ctas__sign-in.emphasis.js-sign-in-nav-bar')
@@ -42,16 +42,19 @@ var datetime = "Last Ran: " + currentdate.getDate() + "/"
   .click('#edit_profile_8812 > div > input')
   .wait('body > div.form-page-container.new-profile > div.main-container > div > header > p')
   .click('body > div.form-page-container.new-profile > div.sidebar > div > div > nav > a')
+  .click('body > nav > a.nav__logo')
+  .wait('body > nav > div.nav__avatar.js-account-hover > ul > li:nth-child(3) > a')
+  .click('body > nav > div.nav__avatar.js-account-hover > ul > li:nth-child(3) > a')
   .then(function(err, nightmare) {
     if (err) {
       console.log(err);
     } else {
-      console.log('Done' + datetime);
+      console.log('Done ' + datetime);
     }
   })
-// }
+}
 
-// setInterval(repeat, 10000)
+setInterval(repeat, 3600000)
 
 // var hello = function() {
 //   console.log('hfsdf');
